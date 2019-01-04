@@ -1,7 +1,10 @@
-From 56a5816b152477b5fd057ed53c55863d59900f41 Mon Sep 17 00:00:00 2001
+From 564fc9c5123848769d21c3bbc660451e7617e4c4 Mon Sep 17 00:00:00 2001
 From: Wojtek Porczyk <woju@invisiblethingslab.com>
 Date: Thu, 16 Jun 2016 18:53:18 +0200
 Subject: [PATCH] Remove branding code
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 This code caused transient build failures when there is more than one
 package that provides /etc/system-release _available_ in any of the
@@ -14,15 +17,16 @@ by package groups, kickstarts and/or whatever. But it does not surprise
 me at all, because this is package is maintained as part of Fedora/RH.
 
 Signed-off-by: Wojtek Porczyk <woju@invisiblethingslab.com>
+Signed-off-by: Frédéric Pierret (fepitre) <frederic.epitre@orange.fr>
 ---
- src/pylorax/treebuilder.py | 24 ------------------------
- 1 file changed, 24 deletions(-)
+ src/pylorax/treebuilder.py | 25 -------------------------
+ 1 file changed, 25 deletions(-)
 
 diff --git a/src/pylorax/treebuilder.py b/src/pylorax/treebuilder.py
-index 5d4f8b7..1bf9f22 100644
+index 0756804c..dc8eec05 100644
 --- a/src/pylorax/treebuilder.py
 +++ b/src/pylorax/treebuilder.py
-@@ -88,32 +88,8 @@ class RuntimeBuilder(object):
+@@ -89,33 +89,8 @@ class RuntimeBuilder(object):
          self._runner.defaults = self.vars
          self.dbo.reset()
  
@@ -30,7 +34,8 @@ index 5d4f8b7..1bf9f22 100644
 -        release = None
 -        q = self.dbo.sack.query()
 -        a = q.available()
--        for pkg in a.filter(provides='/etc/system-release'):
+-        for pkg in a.filter(provides='system-release'):
+-            logger.debug("Found release package %s", pkg)
 -            if pkg.name.startswith('generic'):
 -                continue
 -            else:
@@ -54,7 +59,7 @@ index 5d4f8b7..1bf9f22 100644
 -        self._install_branding()
          if len(self._installpkgs) > 0:
              self._runner.installpkg(*self._installpkgs)
-         self._runner.run("runtime-install.tmpl")
+         if len(self._excludepkgs) > 0:
 -- 
-2.5.5
+2.19.2
 
