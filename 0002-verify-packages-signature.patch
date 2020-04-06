@@ -1,4 +1,4 @@
-From 688db7de62baada272e25234a671fefbd607f946 Mon Sep 17 00:00:00 2001
+From fa4d2189710f9650d42cde364f9e39ef46d3e39e Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
  <marmarek@invisiblethingslab.com>
 Date: Thu, 21 Apr 2016 13:46:33 +0200
@@ -14,10 +14,10 @@ Signed-off-by: Frédéric Pierret (fepitre) <frederic.epitre@orange.fr>
  1 file changed, 18 insertions(+)
 
 diff --git a/src/pylorax/ltmpl.py b/src/pylorax/ltmpl.py
-index d00876c8..de981208 100644
+index f78d32ea..0d837be6 100644
 --- a/src/pylorax/ltmpl.py
 +++ b/src/pylorax/ltmpl.py
-@@ -621,6 +621,24 @@ class LoraxTemplateRunner(object):
+@@ -648,6 +648,24 @@ class LoraxTemplateRunner(TemplateRunner):
              logger.error("Failed to download the following packages: %s", e)
              raise
  
@@ -43,5 +43,5 @@ index d00876c8..de981208 100644
          try:
              display = LoraxRpmCallback()
 -- 
-2.19.2
+2.25.1
 

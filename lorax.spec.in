@@ -15,12 +15,12 @@ URL:            https://github.com/weldr/lorax
 # git checkout -b archive-branch lorax-%%{version}-%%{release}
 # tito build --tgz
 Source0:        %{name}-%{version}.tar.gz
-Patch1:         0001-Allow-specify-gpg-key-for-a-repository.patch
-Patch2:         0002-verify-packages-signature.patch
-Patch3:         0003-Update-package-verification-for-dnf-API.patch
-Patch4:         0004-Remove-branding-code.patch
+Patch0: 0001-Allow-specify-gpg-key-for-a-repository.patch
+Patch1: 0002-verify-packages-signature.patch
+Patch2: 0003-Update-package-verification-for-dnf-API.patch
 
 BuildRequires:  python3-devel
+BuildRequires:  make
 
 Requires:       lorax-templates
 
@@ -45,7 +45,7 @@ Requires:       xz-lzma-compat
 Requires:       xz
 Requires:       pigz
 Requires:       pbzip2
-Requires:       dracut >= 030
+Requires:       dracut >= 050
 Requires:       kpartx
 
 # Python modules
@@ -161,6 +161,9 @@ Requires: createrepo_c
 %{?systemd_requires}
 BuildRequires: systemd
 
+# Implements the weldr API
+Provides: weldr
+
 %description composer
 lorax-composer provides a REST API for building images using lorax.
 
@@ -169,6 +172,7 @@ Summary: A command line tool for use with the lorax-composer API server
 
 # From Distribution
 Requires: python3-urllib3
+Requires: python3-toml
 
 %description -n composer-cli
 A command line tool for use with the lorax-composer API server. Examine blueprints,
@@ -218,6 +222,7 @@ getent passwd weldr >/dev/null 2>&1 || useradd -r -g weldr -d / -s /sbin/nologin
 %{_sbindir}/lorax
 %{_sbindir}/mkefiboot
 %{_sbindir}/livemedia-creator
+%{_sbindir}/mkksiso
 %{_bindir}/image-minimizer
 %{_bindir}/mk-s390-cdboot
 %dir %{_sysconfdir}/lorax
@@ -225,6 +230,7 @@ getent passwd weldr >/dev/null 2>&1 || useradd -r -g weldr -d / -s /sbin/nologin
 %dir %{_datadir}/lorax
 %{_mandir}/man1/lorax.1*
 %{_mandir}/man1/livemedia-creator.1*
+%{_mandir}/man1/mkksiso.1*
 %{_tmpfilesdir}/lorax.conf
 
 %files docs
@@ -241,11 +247,13 @@ getent passwd weldr >/dev/null 2>&1 || useradd -r -g weldr -d / -s /sbin/nologin
 %files composer
 %config(noreplace) %{_sysconfdir}/lorax/composer.conf
 %{python3_sitelib}/pylorax/api/*
+%{python3_sitelib}/lifted/*
 %{_sbindir}/lorax-composer
 %{_unitdir}/lorax-composer.service
 %{_unitdir}/lorax-composer.socket
 %dir %{_datadir}/lorax/composer
 %{_datadir}/lorax/composer/*
+%{_datadir}/lorax/lifted/*
 %{_tmpfilesdir}/lorax-composer.conf
 %dir %attr(0771, root, weldr) %{_sharedstatedir}/lorax/composer/
 %dir %attr(0771, root, weldr) %{_sharedstatedir}/lorax/composer/blueprints/

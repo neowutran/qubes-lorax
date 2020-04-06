@@ -1,4 +1,4 @@
-From 34d065af3444d53338871e2c3451f57c7b1507ce Mon Sep 17 00:00:00 2001
+From 199227ae504a01e71a0e66b3fe46f47899ca762b Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
  <marmarek@invisiblethingslab.com>
 Date: Thu, 21 Apr 2016 02:15:54 +0200
@@ -18,7 +18,7 @@ Signed-off-by: Frédéric Pierret (fepitre) <frederic.epitre@orange.fr>
  2 files changed, 12 insertions(+), 2 deletions(-)
 
 diff --git a/src/pylorax/cmdline.py b/src/pylorax/cmdline.py
-index 738c6019..c8aba332 100644
+index 652ffbbd..e755ee57 100644
 --- a/src/pylorax/cmdline.py
 +++ b/src/pylorax/cmdline.py
 @@ -36,7 +36,7 @@ def lorax_parser(dracut_default=""):
@@ -40,10 +40,10 @@ index 738c6019..c8aba332 100644
      optional.add_argument("-t", "--variant", default="",
                          help="variant name", metavar="VARIANT")
 diff --git a/src/pylorax/dnfbase.py b/src/pylorax/dnfbase.py
-index 6f383489..3ebea603 100644
+index c4d514f1..3404ddd0 100644
 --- a/src/pylorax/dnfbase.py
 +++ b/src/pylorax/dnfbase.py
-@@ -128,6 +128,11 @@ def get_dnf_base_object(installroot, sources, mirrorlists=None, repos=None,
+@@ -130,6 +130,11 @@ def get_dnf_base_object(installroot, sources, mirrorlists=None, repos=None,
              continue
          repo_name = "lorax-repo-%d" % i
          repo = dnf.repo.Repo(repo_name, conf)
@@ -55,7 +55,7 @@ index 6f383489..3ebea603 100644
          repo.baseurl = [r]
          if proxy:
              repo.proxy = proxy
-@@ -148,6 +153,11 @@ def get_dnf_base_object(installroot, sources, mirrorlists=None, repos=None,
+@@ -150,6 +155,11 @@ def get_dnf_base_object(installroot, sources, mirrorlists=None, repos=None,
              continue
          repo_name = "lorax-mirrorlist-%d" % i
          repo = dnf.repo.Repo(repo_name, conf)
@@ -68,5 +68,5 @@ index 6f383489..3ebea603 100644
          if proxy:
              repo.proxy = proxy
 -- 
-2.19.2
+2.25.1
 
