@@ -94,7 +94,7 @@ Anaconda's image install feature.
 
 %package docs
 Summary: Lorax html documentation
-Requires: lorax = %{version}-%{release}
+Requires: lorax = %{epoch}:%{version}-%{release}
 
 %description docs
 Includes the full html documentation for lorax, livemedia-creator, lorax-composer and the
