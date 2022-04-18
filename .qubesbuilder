@@ -1,0 +1,8 @@
+host:
+  rpm:
+    spec:
+    - lorax.spec
+source:
+  files:
+  - url: https://ftp.qubes-os.org/distfiles/lorax-32.9.tar.gz
+    sha512: lorax-32.9.tar.gz.sha512
