@@ -1,6 +1,6 @@
 host:
   rpm:
-    spec:
+    build:
     - lorax.spec
 source:
   files:
