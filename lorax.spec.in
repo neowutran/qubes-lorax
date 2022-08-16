@@ -18,6 +18,7 @@ Source0:        %{name}-%{version}.tar.gz
 Patch0: 0001-Allow-specify-gpg-key-for-a-repository.patch
 Patch1: 0002-verify-packages-signature.patch
 Patch2: 0003-Update-package-verification-for-dnf-API.patch
+Patch3: 0004-pylorax-remove-check-on-hfsplus-tools.patch
 
 BuildRequires:  python3-devel
 BuildRequires:  make

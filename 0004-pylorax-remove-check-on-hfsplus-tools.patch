@@ -1,0 +1,32 @@
+From 614dd5692bab8035f13500f0b6a2860adfb6f870 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fr=C3=A9d=C3=A9ric=20Pierret=20=28fepitre=29?=
+ <frederic.pierret@qubes-os.org>
+Date: Tue, 16 Aug 2022 10:53:19 +0200
+Subject: [PATCH 4/4] pylorax: remove check on hfsplus-tools
+
+This requirement is enforced in spec file.
+---
+ src/pylorax/__init__.py | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/src/pylorax/__init__.py b/src/pylorax/__init__.py
+index 781dfd33..2942ad82 100644
+--- a/src/pylorax/__init__.py
++++ b/src/pylorax/__init__.py
+@@ -191,13 +191,6 @@ class Lorax(BaseLoraxClass):
+         installpkgs = installpkgs or []
+         excludepkgs = excludepkgs or []
+ 
+-        if domacboot:
+-            try:
+-                runcmd(["rpm", "-q", "hfsplus-tools"])
+-            except CalledProcessError:
+-                logger.critical("you need to install hfsplus-tools to create mac images")
+-                sys.exit(1)
+-
+         # set up work directory
+         self.workdir = workdir or tempfile.mkdtemp(prefix="pylorax.work.")
+         if not os.path.isdir(self.workdir):
+-- 
+2.37.1
+
